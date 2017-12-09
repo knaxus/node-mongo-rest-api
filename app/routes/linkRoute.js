@@ -1,25 +1,18 @@
 const LinkRoute = require('express').Router();
 const Link = require('../models/links');
 const bodyParser = require('body-parser');
+const sendResponse = require('../helpers/sendResponse');
 
 LinkRoute.route('/')
   .get((req, res) => {
     Link.find()
     .then((data) => {
-      console.log(data);
-      return res.status(200).json({
-        data,
-        status: 'Success',
-        message: 'Get data successfully'
-      })
+      // console.log(data);
+      return sendResponse(res, 200, data, 'Get data successfully');
     })
     .catch((err) => {
       console.log(err);
-      return res.status(404).json({
-        data,
-        status: 'failed',
-        message: 'data not found'
-      })
+      return sendResponse(res, 404, [], 'data not found');      
     })
   })
   .post((req, res) => {
@@ -36,19 +29,11 @@ LinkRoute.route('/')
     linkData.save()
     .then((response) => {
       // console.log(response);
-      return res.status(200).json({
-        data: [],
-        status:'success',
-        message: 'data saved successfully'
-      })
+      return sendResponse(res, 200, [], 'data saved successfully'); 
     })
     .catch((err) => {
       console.log(err);
-      return res.status(500).json({
-        data: [],
-        status: 'failed',
-        message: 'something went wrong'
-      })
+      return sendResponse(res, 500, [], 'something went wrong'); 
     })
   });
 
@@ -58,14 +43,11 @@ LinkRoute.route('/:id')
     const { id } = req.params;
     Link.findById( id )
     .then((data) => {
-      return res.status(200).json({
-        data,
-        status: 'success',
-        message: 'Get data successfully'
-      })
+      return sendResponse(res, 200, data, 'Get data successfully');       
     })
     .catch((err) => {
       console.log(err);
+      return sendResponse(res, 400, [], 'bad request');       
     })
   })
   .delete((req, res) => {
@@ -75,19 +57,11 @@ LinkRoute.route('/:id')
     Link.findByIdAndRemove( id )
     .then((response) => {
       // console.log(response);
-      return res.status(200).json({
-        data: [],
-        status: 'success',
-        message: 'deleted data successfully'
-      })
+      return sendResponse(res, 200, [], 'deleted data successfully');       
     })
     .catch((err) => {
       console.log(err)
-      return res.status(500).json({
-        data: [],
-        status: 'fail',
-        message: 'something went wrong'
-      })
+      return sendResponse(res, 500, [], 'something went wrong');  
     })
   })
 module.exports = LinkRoute;
