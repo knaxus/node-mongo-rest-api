@@ -10,16 +10,13 @@ const LinksSchema = new Schema({
   linkAdd:{
     type: String,
     required: [true, 'Link address is required']
-  },
-  createdAt: {
-    type: Date
   }
 });
 
 let Link = mongoose.model('link', LinksSchema);
-Link.insertMany({
-  linkName: 'Google',
-  linkAdd:'www.google.com'
-});
+// Link.insertMany({
+//   linkName: 'Google',
+//   linkAdd:'www.google.com'
+// });
 
 module.exports = Link;
