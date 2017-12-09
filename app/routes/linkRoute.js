@@ -24,6 +24,10 @@ LinkRoute.route('/')
   })
   .post((req, res) => {
     // const {linkName, linkAdd} = req.body;
+    //validations
+    req.check('linkName', 'link name is required').exists().isAlpha().isLength({min:5});
+    req.check('linkAdd', 'link address is required').exists();    
+    
     let linkData = new Link({
       linkName: req.body.linkName,
       linkAdd: req.body.linkAdd

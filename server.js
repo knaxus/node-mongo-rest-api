@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const expressValidator = require('express-validator');
 const port = process.env.PORT || 3000;
 const routes = require('./app/routes/linkRoute');
 const config = require ('./app/config/config.js');
@@ -9,6 +10,7 @@ const app = express();
 
 //middleware
 app.use(bodyParser.json());
+app.use(expressValidator());
 app.use('/api', routes );
 
 
