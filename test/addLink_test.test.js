@@ -14,13 +14,13 @@ describe('GET all links ENDPOINT is : api/links', () => {
       }),
   ]);
 
-  it('data key should be present in response', done => [
+  it('should retun "success" as status', done => [
     request(app)
       .get('/api/links')
       .end((err, response) => {
         // console.log('**Env =', process.env.NODE_ENV);
         // console.log(response.body.data);
-        expect(response.body.data.length).toBe(0);
+        expect(response.body.data.status).toBe('success');
         done();
       }),
   ]);
