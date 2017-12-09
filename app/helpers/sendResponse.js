@@ -12,7 +12,7 @@ const sendResponse = (res, statusCode, data, message) => {
 	const pattern = /^2\d{2}$/;
   
 	//check if pattern is start with 2 or not
-	pattern.test(statusCode) ? status = 'Success' : status = 'Fail';
+	pattern.test(statusCode) ? status = 'success' : status = 'Fail';
   
 	return res.status(statusCode).json({
 		data,
