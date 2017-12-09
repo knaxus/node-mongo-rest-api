@@ -3,7 +3,7 @@ const Link = require('../models/links');
 const bodyParser = require('body-parser');
 const sendResponse = require('../helpers/sendResponse');
 
-LinkRoute.route('/')
+LinkRoute.route('/links')
   .get(async (req, res) => {
     try{
       const data = await Link.find();
@@ -20,6 +20,11 @@ LinkRoute.route('/')
     req.check('linkName', 'link name is required').exists().isAlpha().isLength({min:5});
     req.check('linkAdd', 'link address is required').exists(); 
     
+    const error = req.validationErrors();
+    if(error){
+      return sendResponse(res, 400, [], error[0].msg);
+    }
+    
     try{
        const linkData = new Link({
         linkName: req.body.linkName,
@@ -34,9 +39,15 @@ LinkRoute.route('/')
     }
   });
 
-LinkRoute.route('/:id')
+LinkRoute.route('/links/:id')
   .get(async (req, res) => {
-    req.check('id', 'id is required').exists().isInt(); 
+    req.check('id', 'id is required').exists();
+    
+    const error = req.validationErrors();
+    if(error){
+      return sendResponse(res, 400, [], error[0].msg);
+    } 
+
     try{
       const { id } = req.params;
       const data = await Link.findById(id);
@@ -50,6 +61,12 @@ LinkRoute.route('/:id')
   .delete(async (req, res) => {
     //validate id
     req.check('id', 'id is required').exists().isInt();
+
+    const error = req.validationErrors();
+    if(error){
+      return sendResponse(res, 400, [], error[0].msg);
+    }
+
     try{
       const { id } = req.params;  
       await Link.findByIdAndRemove(id);
