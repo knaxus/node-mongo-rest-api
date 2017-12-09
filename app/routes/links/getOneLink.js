@@ -14,11 +14,10 @@ getOneLink.get('/:id', async (req, res) => {
     const { id } = req.params;
     const data = await Link.findById(id);
     return sendResponse(res, 200, data, 'Get data successfully');
-  }
-  catch (err) {
+  } catch (err) {
     console.log(err);
     return sendResponse(res, 400, [], 'bad request');
   }
-})
+});
 
 module.exports = getOneLink;
