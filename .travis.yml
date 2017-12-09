@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - "8.7"
+services:
+- mongodb
+
+after_success:
+  - npm install -g codeclimate-test-reporter
+  - codeclimate-test-reporter < lcov.info
