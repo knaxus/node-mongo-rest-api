@@ -1,17 +1,17 @@
+require('./app/config/config.js');
+require('./app/db/mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const port = process.env.PORT || 3000;
-const routes = require('./app/routes/linkRoute');
-const config = require ('./app/config/config.js');
-const db = require('./app/db/mongoose');
+const routes = require('./app/routes');
 
 const app = express();
 
-//middleware
+// middleware
 app.use(bodyParser.json());
 app.use(expressValidator());
-app.use('/api', routes );
+app.use('/api', routes);
 
 
 app.listen(port, () => {
