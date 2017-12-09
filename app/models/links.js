@@ -17,5 +17,9 @@ const LinksSchema = new Schema({
 });
 
 let Link = mongoose.model('link', LinksSchema);
+Link.insertMany({
+  linkName: 'Google',
+  linkAdd:'www.google.com'
+});
 
-module.exports = linkModel;
+module.exports = Link;
