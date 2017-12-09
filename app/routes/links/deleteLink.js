@@ -4,7 +4,7 @@ const sendResponse = require('../../helpers/sendResponse');
 
 deleteLink.delete('/:id', async (req, res) => {
   // validate id
-  req.check('id', 'id is required').exists().isInt();
+  req.check('id', 'id is required').exists().isValidObjectId();
 
   const error = req.validationErrors();
   if (error) {

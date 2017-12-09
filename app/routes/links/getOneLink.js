@@ -3,7 +3,7 @@ const Link = require('../../models/links');
 const sendResponse = require('../../helpers/sendResponse');
 
 getOneLink.get('/:id', async (req, res) => {
-  req.check('id', 'id is required').exists();
+  req.check('id', 'id is required/invalid').exists().isValidObjectId();
 
   const error = req.validationErrors();
   if (error) {
