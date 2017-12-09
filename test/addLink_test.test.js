@@ -14,7 +14,7 @@ describe('GET all links ENDPOINT is : api/links', () => {
       }),
   ]);
 
-  it('should retun "success" as status', done => [
+  it('should return "success" as status', done => [
     request(app)
       .get('/api/links')
       .end((err, response) => {
