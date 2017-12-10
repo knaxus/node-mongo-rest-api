@@ -1,19 +1,19 @@
-'use strict';
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+
+const { Schema } = mongoose;
 
 const LinksSchema = new Schema({
-  linkName:{
+  linkName: {
     type: String,
-    required: [true, 'Link name is required']
+    required: [true, 'Link name is required'],
   },
-  linkAdd:{
+  linkAdd: {
     type: String,
-    required: [true, 'Link address is required']
-  }
+    required: [true, 'Link address is required'],
+  },
 });
 
-let Link = mongoose.model('link', LinksSchema);
+const Link = mongoose.model('link', LinksSchema);
 // Link.insertMany({
 //   linkName: 'Google',
 //   linkAdd:'www.google.com'
