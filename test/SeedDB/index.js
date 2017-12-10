@@ -17,8 +17,11 @@ const dummyData = [
   },
 ];
 
-export default function populateData() {
+const populateData = (done) => {
   Link.remove({}).then(() => {
-    Link.insertMany(dummyData);
-  });
-}
+    return Link.insertMany(dummyData);
+  }).then(() => done());
+};
+
+module.exports = populateData;
+
