@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 const routes = require('./app/routes');
 
 const app = express();
@@ -18,9 +18,10 @@ app.use(expressValidator({
 }));
 app.use('/api', routes);
 
-
-app.listen(port, () => {
-  console.log('app is running on port', port);
-});
+if (!module.parent) {
+  app.listen(port, () => {
+    console.log('app is running on port', port);
+  });
+}
 
 module.exports = app;
