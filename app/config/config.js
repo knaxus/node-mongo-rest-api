@@ -1,5 +1,3 @@
-
-
 const env = process.env.NODE_ENV || 'development';
 
 if (env === 'development') {
@@ -7,7 +5,7 @@ if (env === 'development') {
   process.env.MONGODB_URI = 'mongodb://localhost/LinkBin';
 } else if (env === 'test') {
   process.env.PORT = 3000;
-  process.env.MONGODB_URI = 'mongodb://localhost/LinkBin';
+  process.env.MONGODB_URI = 'mongodb://localhost/LinkBinTest';
 }
 
 // console.log('****Working Environment is : ', env);
