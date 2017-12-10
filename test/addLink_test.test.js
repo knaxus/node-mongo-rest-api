@@ -17,13 +17,24 @@ describe('GET all links ENDPOINT is : api/links', () => {
       }),
   ]);
 
-  it('data key should be present in response', done => [
+  it('should contain "success" in response body', done => [
     request(app)
       .get('/api/links')
       .end((err, response) => {
         // console.log('**Env =', process.env.NODE_ENV);
         // console.log(response.body.data);
-        expect(response.body.data.length).toBe(4);
+        expect(response.body.status).toBe('success');
+        done();
+      }),
+  ]);
+
+  it('should contain 3 link objects in response', done => [
+    request(app)
+      .get('/api/links')
+      .end((err, response) => {
+        // console.log('**Env =', process.env.NODE_ENV);
+        // console.log(response.body.data);
+        expect(response.body.data.length).toBe(3);
         done();
       }),
   ]);
