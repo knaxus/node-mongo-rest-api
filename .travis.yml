@@ -10,7 +10,7 @@ addons:
 
 script: babel-istanbul cover node_modules/mocha/bin/_mocha -- -R spec
 before_script:
-  - yarn add codeclimate-test-reporter babel-istanbul -g
+  - npm install babel-cli babel-preset-env codeclimate-test-reporter babel-istanbul -g
 after_script:
   - codeclimate-test-reporter < ./coverage/lcov.info
 
