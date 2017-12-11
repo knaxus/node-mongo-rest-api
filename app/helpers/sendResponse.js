@@ -1,5 +1,5 @@
 const sendResponse = (res, statusCode, data, message) => {
-  let status;
+  let status = 'failed';
   // regex pattern validate status should be 3 digits
   const digitsOfStatusCode = /^[0-9]{3}$/;
 
@@ -12,7 +12,9 @@ const sendResponse = (res, statusCode, data, message) => {
   const pattern = /^2\d{2}$/;
 
   // check if pattern is start with 2 or not
-  pattern.test(statusCode) ? status = 'success' : status = 'failed';
+  if (pattern.test(statusCode)) {
+    status = 'success';
+  }
 
   return res.status(statusCode).json({
     data,

@@ -21,7 +21,7 @@ describe('Delete link ENDPOINT is : api/links/:linkId', () => {
 
   it('should return 200 if linkId is valid', (done) => {
     const validLinkId = dummyData[0]._id;
-    
+
     request(app)
       .delete(`/api/links/${validLinkId}`)
       .expect(200)
@@ -30,5 +30,4 @@ describe('Delete link ENDPOINT is : api/links/:linkId', () => {
         done();
       });
   });
-
 });
