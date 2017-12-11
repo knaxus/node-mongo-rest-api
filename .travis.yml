@@ -8,7 +8,7 @@ addons:
         repo_token:
           secure: "qGU83S1d2EIzplSdXB51Yoxo0YTljISI1e+VvoeIlf3uNQLllRxrFwx4ucDXTLbi15pjwl2fCJDD8h3CR2+ZhahUmdf/PufHmYCrUWQhZsUZhA5fTh5L9PAWgJ/AsBNw01lGeikI1dQdI1+qFeRI9K86yfVS8ObKp1O87fiQ+c07Kgen3v8Y/L8Jml6kvzX/LAh+RtezLFqCc92FZXNv7wfcHbbiUqGf5MnOPRljL443IYIH2L2uTEidINcZcvreQnEY2jirNNusKcRCdO573VSg9gddaaF60BG6C2EtCHkzT0GnqsEH2F/kmoK1AylBMdxIVH1QMnmxv0QtQGlj5QVG9Mg5vs2Bc87QCvc9g62mgANJXeCWk5VhcW/J4XBR9TZgfPD0In7KlrGs4ikNcwVxNY8cW+ruHAMfAftzsuV0Tt0p1UE/URNRkFEc12kViKzjUkqm6fMrXWaJFL7idlQrwkaMvb3t912DUVAy02JedKLqPqqPsuOJqmWc29FbpuvOxMhRyFalKguxxq8pgz3+cygBq966oudP6mCT8V18gqGfGq4VheEZvgOM47RPR4XzXi+OYQiIHRy4/aLx6tRRFXivFSIzAqoeMUzbMAbQg+KIPZYtXM4o06KmtomhuizewZ59fBN6uuVoSPGLuarUy2olwkOPKnOqPhxsiRc="
 
-script: babel-istanbul --require babel-polyfill cover node_modules/mocha/bin/_mocha -- -R spec
+script: babel-istanbul cover node_modules/mocha/bin/_mocha -- --require babel-polyfill -R  spec
 before_script:
   - npm install babel-cli babel-polyfill  babel-preset-env codeclimate-test-reporter babel-istanbul -g
 after_script:
