@@ -6,6 +6,10 @@ const expressValidator = require('express-validator');
 
 const port = process.env.PORT;
 const routes = require('./app/routes');
+const log4js = require('log4js');
+
+const logger = log4js.getLogger();
+logger.level = 'debug';
 
 const app = express();
 
@@ -20,7 +24,7 @@ app.use('/api', routes);
 
 if (!module.parent) {
   app.listen(port, () => {
-    console.log('app is running on port', port);
+    logger.debug('app is running on port', port);
   });
 }
 
