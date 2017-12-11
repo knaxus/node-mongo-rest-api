@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- '8.7'
+- '8.9.3'
 services:
 - mongodb
 
@@ -16,6 +16,7 @@ addons:
 
 script: babel-istanbul cover node_modules/mocha/bin/_mocha -- -R spec
 before_script:
-  - npm install codeclimate-test-reporter babel-istanbul -g
+  - yarn add codeclimate-test-reporter babel-istanbul -g
 after_script:
   - codeclimate-test-reporter < ./coverage/lcov.info
+

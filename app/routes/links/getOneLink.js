@@ -1,6 +1,10 @@
 const getOneLink = require('express').Router();
 const Link = require('../../models/links');
 const sendResponse = require('../../helpers/sendResponse');
+const log4js = require('log4js');
+
+const logger = log4js.getLogger();
+logger.level = 'error';
 
 getOneLink.get('/:id', async (req, res) => {
   req.check('id', 'id is required/invalid').exists().isValidObjectId();
@@ -15,7 +19,7 @@ getOneLink.get('/:id', async (req, res) => {
     const data = await Link.findById(id);
     return sendResponse(res, 200, data, 'Get data successfully');
   } catch (err) {
-    console.log(err);
+    logger.error(err);
     return sendResponse(res, 400, [], 'bad request');
   }
 });
