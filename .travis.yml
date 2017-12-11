@@ -8,5 +8,5 @@ script: babel-istanbul cover node_modules/mocha/bin/_mocha -- --require babel-po
 before_script:
   - npm install codacy-coverage babel-cli babel-polyfill  babel-preset-env codeclimate-test-reporter babel-istanbul -g
 after_script:
-  - cat ./coverage/lcov.info | codacy-coverage && rm -rf ./coverage
+  - cat ./coverage/lcov.info | codacy-coverage && codeclimate-test-reporter < ./coverage/lcov.inform && rm -rf ./coverage
 
