@@ -10,5 +10,5 @@ Learning Objectives:
 - [x] Writing test cases
 - [x] Setup CI using TravisCI
 - [x] Setup code coverage
-- [x] Getting famalier with CodeClimate and Codacy
+- [x] Getting famaliar with CodeClimate and Codacy
 - [x] Integrating Github webhooks
