@@ -9,7 +9,8 @@ const port = process.env.PORT;
 const routes = require('./app/routes');
 const log4js = require('log4js');
 
-const isValidObjectId = value => mongoose.Types.ObjectId.isValid(value);
+const isValidObjectId = require('./app/helpers/validators');
+
 const logger = log4js.getLogger();
 logger.level = 'debug';
 
