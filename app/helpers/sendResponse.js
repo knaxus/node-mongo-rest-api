@@ -8,10 +8,10 @@ const sendResponse = (res, statusCode, data, message) => {
     throw new Error('Status code should be three digit number');
   }
 
-  // regex status code start with 2
-  const pattern = /^2\d{2}$/;
+  // regex success status code start with 2xx or 3xx
+  const pattern = /^[23]\d{2}$/;
 
-  // check if pattern is start with 2 or not
+  // check if pattern matches status code
   if (pattern.test(statusCode)) {
     status = 'success';
   }
