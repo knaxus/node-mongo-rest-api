@@ -1,9 +1,7 @@
 const request = require('supertest');
-const app = require('../server');
 const expect = require('expect');
-const { populateData, dummyData } = require('./SeedDB');
-
-beforeEach(populateData);
+const app = require('../server');
+const { dummyData } = require('./SeedDB');
 
 describe('Delete link ENDPOINT is : api/links/:linkId', () => {
   it('should return 400 if object id is invalid', (done) => {
@@ -20,6 +18,7 @@ describe('Delete link ENDPOINT is : api/links/:linkId', () => {
   });
 
   it('should return 200 if linkId is valid', (done) => {
+    // eslint-disable-next-line no-underscore-dangle
     const validLinkId = dummyData[0]._id;
 
     request(app)

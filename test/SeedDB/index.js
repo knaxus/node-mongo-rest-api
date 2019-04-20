@@ -27,8 +27,10 @@ const dummyData = [
 ];
 
 const populateData = (done) => {
-  Link.remove({}).then(() => Link.insertMany(dummyData)).then(() => done());
+  Link.collection
+    .drop()
+    .then(() => Link.insertMany(dummyData))
+    .then(() => done());
 };
 
 module.exports = { populateData, dummyData };
-

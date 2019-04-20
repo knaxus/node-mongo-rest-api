@@ -1,14 +1,17 @@
+const log4js = require('log4js');
 const deleteLink = require('express').Router();
 const Link = require('../../models/links');
 const sendResponse = require('../../helpers/sendResponse');
-const log4js = require('log4js');
 
 const logger = log4js.getLogger();
 logger.level = 'error';
 
 deleteLink.delete('/:id', async (req, res) => {
   // validate id
-  req.check('id', 'id is required/invalid').exists().isValidObjectId();
+  req
+    .check('id', 'id is required/invalid')
+    .exists()
+    .isValidObjectId();
 
   const error = req.validationErrors();
   if (error) {
@@ -17,7 +20,7 @@ deleteLink.delete('/:id', async (req, res) => {
 
   try {
     const { id } = req.params;
-    await Link.findByIdAndRemove(id);
+    await Link.findOneAndDelete(id);
     return sendResponse(res, 200, [], 'deleted data successfully');
   } catch (err) {
     logger.error(err);

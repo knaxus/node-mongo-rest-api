@@ -3,11 +3,11 @@ require('./app/db/mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
-const mongoose = require('mongoose');
+const log4js = require('log4js');
 
 const port = process.env.PORT;
+
 const routes = require('./app/routes');
-const log4js = require('log4js');
 
 const { isValidObjectId } = require('./app/helpers/validators');
 

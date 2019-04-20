@@ -1,9 +1,6 @@
 const request = require('supertest');
-const app = require('../server');
 const expect = require('expect');
-const { populateData } = require('./SeedDB');
-
-beforeEach(populateData);
+const app = require('../server');
 
 describe('Create new links ENDPOINT is : api/links', () => {
   it('It should return 400 if missing key in data', (done) => {
