@@ -1,7 +1,7 @@
+const log4js = require('log4js');
 const deleteLink = require('express').Router();
 const Link = require('../../models/links');
 const sendResponse = require('../../helpers/sendResponse');
-const log4js = require('log4js');
 
 const logger = log4js.getLogger();
 logger.level = 'error';

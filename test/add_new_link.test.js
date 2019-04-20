@@ -1,6 +1,6 @@
 const request = require('supertest');
-const app = require('../server');
 const expect = require('expect');
+const app = require('../server');
 const { populateData } = require('./SeedDB');
 
 beforeEach(populateData);

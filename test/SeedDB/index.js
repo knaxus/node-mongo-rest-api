@@ -31,4 +31,3 @@ const populateData = (done) => {
 };
 
 module.exports = { populateData, dummyData };
-
