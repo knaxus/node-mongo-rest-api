@@ -1,9 +1,7 @@
 const request = require('supertest');
 const expect = require('expect');
 const app = require('../server');
-const { populateData, dummyData } = require('./SeedDB');
-
-beforeEach(populateData);
+const { dummyData } = require('./SeedDB');
 
 describe('Delete link ENDPOINT is : api/links/:linkId', () => {
   it('should return 400 if object id is invalid', (done) => {
