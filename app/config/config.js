@@ -7,7 +7,7 @@ if (env === 'development') {
    * Also add `uri_decode_auth: true` inn mongoose connection option
    */
   // this url is just for demostration purpose only
-  process.env.MONGODB_URI = 'mongodb://dummy:dymmy%40dummy@ds145193.mlab.com:45193/node-mongo-rest';
+  process.env.MONGODB_URI = 'mongodb://localhost/LinkBin';
 } else if (env === 'test') {
   process.env.PORT = 3000;
   process.env.MONGODB_URI = 'mongodb://localhost/LinkBinTest';
