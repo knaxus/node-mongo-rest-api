@@ -1,8 +1,7 @@
 const linksRoute = require('express').Router();
-const addLink = require('./addLink');
-const deleteLink = require('./deleteLink');
-const getAllLink = require('./getAllLinks');
-const getOneLink = require('./getOneLink');
+const {
+  addLink, deleteLink, getAllLink, getOneLink,
+} = require('../controllers/links');
 
 linksRoute.use('/', addLink);
 linksRoute.use('/', deleteLink);

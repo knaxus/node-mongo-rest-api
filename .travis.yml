@@ -1,9 +1,12 @@
 language: node_js
 node_js:
-  - "8.7"
+  - '8.9.3'
 services:
-- mongodb
+  - mongodb
 
-after_success:
-  - npm install -g codeclimate-test-reporter
-  - codeclimate-test-reporter < lcov.info
+script: babel-istanbul cover node_modules/mocha/bin/_mocha -- --require babel-polyfill -R  spec
+before_script:
+  - npm install codacy-coverage babel-cli babel-polyfill  babel-preset-env codeclimate-test-reporter babel-istanbul -g
+after_script:
+  - cat ./coverage/lcov.info | codacy-coverage && codeclimate-test-reporter < ./coverage/lcov.inform && rm -rf ./coverage
+

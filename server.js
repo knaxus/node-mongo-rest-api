@@ -3,9 +3,16 @@ require('./app/db/mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
+const mongoose = require('mongoose');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 const routes = require('./app/routes');
+const log4js = require('log4js');
+
+const { isValidObjectId } = require('./app/helpers/validators');
+
+const logger = log4js.getLogger();
+logger.level = 'debug';
 
 const app = express();
 
@@ -13,14 +20,15 @@ const app = express();
 app.use(bodyParser.json());
 app.use(expressValidator({
   customValidators: {
-    isValidObjectId: value => /^[0-9a-fA-F]{24}$/.test(value),
+    isValidObjectId,
   },
 }));
 app.use('/api', routes);
 
-
-app.listen(port, () => {
-  console.log('app is running on port', port);
-});
+if (!module.parent) {
+  app.listen(port, () => {
+    logger.debug('app is running on port', port);
+  });
+}
 
 module.exports = app;

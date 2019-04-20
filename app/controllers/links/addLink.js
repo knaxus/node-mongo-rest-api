@@ -1,6 +1,10 @@
 const addLink = require('express').Router();
 const Link = require('../../models/links');
 const sendResponse = require('../../helpers/sendResponse');
+const log4js = require('log4js');
+
+const logger = log4js.getLogger();
+logger.level = 'error';
 
 addLink.post('/', async (req, res) => {
   // const {linkName, linkAdd} = req.body;
@@ -21,7 +25,7 @@ addLink.post('/', async (req, res) => {
     await linkData.save();
     return sendResponse(res, 200, [], 'data saved successfully');
   } catch (err) {
-    console.log(err);
+    logger.error(err);
     return sendResponse(res, 500, [], 'something went wrong');
   }
 });
