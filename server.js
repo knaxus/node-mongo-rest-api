@@ -1,9 +1,9 @@
 require('./app/config/config.js');
+console.log(process.env.MONGODB_URI);
 require('./app/db/mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
-const mongoose = require('mongoose');
 
 const port = process.env.PORT;
 const routes = require('./app/routes');
