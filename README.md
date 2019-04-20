@@ -16,3 +16,7 @@ Learning Objectives:
 ### Note
 
 - Change URL in this file `app/config/config.js` for mongodb connection
+- Use this `mongodb://dummy:dymmy%40dummy@ds145193.mlab.com:45193/node-mongo-rest`
+- Few lines on using `uri_decode_auth` as DB option
+    - It should be used to decode the connection URI ([Read More](https://stackoverflow.com/questions/7486623/mongodb-password-with-in-it))
+    - Use `%40` for `@` if password is like `dummy@dummy`
