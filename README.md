@@ -12,3 +12,7 @@ Learning Objectives:
 - [x] Setup code coverage
 - [x] Getting famaliar with CodeClimate and Codacy
 - [x] Integrating Github webhooks
+
+### Note
+
+- Change URL in this file `app/config/config.js` for mongodb connection
