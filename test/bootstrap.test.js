@@ -1,5 +1,16 @@
 const { populateData } = require('./SeedDB');
 
-before(() => populateData);
+before(() => {
+  // eslint-disable-next-line no-console
+  console.log('Test started....\n');
+});
 
-after(() => process.exit(0));
+beforeEach((done) => {
+  populateData(done);
+});
+
+after(() => {
+  // eslint-disable-next-line no-console
+  console.log('Test completed.');
+  process.exit(0);
+});
