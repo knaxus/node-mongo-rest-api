@@ -4,7 +4,6 @@ const options = {
   reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
   reconnectInterval: 500, // Reconnect every 500ms
   useNewUrlParser: true,
-  uri_decode_auth: true,
 };
 
 mongoose.Promise = global.Promise;
