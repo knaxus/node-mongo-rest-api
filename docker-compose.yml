@@ -1,13 +1,13 @@
 version: '3'
 services:
-  webapp:
-    image: $WEBAPP_IMAGE_NAME
+  lb-api:
+    image: $LB_IMAGE_NAME
     build:
       context: .
       args:
-        - WEBAPP_IMAGE_NAME=$WEBAPP_IMAGE_NAME
-        - WEBAPP_HOST_PORT=$WEBAPP_HOST_PORT
-        - WEBAPP_CONTAINER_PORT=WEBAPP_CONTAINER_PORT
+        - LB_IMAGE_NAME=$LB_IMAGE_NAME
+        - LB_HOST_PORT=$LB_HOST_PORT
+        - LB_CONTAINER_PORT=LB_CONTAINER_PORT
         - MONGODB_IMAGE_NAME=$MONGODB_IMAGE_NAME
         - MONGODB_HOST_DATA_VOLUME=$MONGODB_HOST_DATA_VOLUME
         - MONGODB_CONTAINER_DATA_VOLUME=$MONGODB_CONTAINER_DATA_VOLUME
@@ -15,9 +15,9 @@ services:
         - MONGODB_CONTAINER_DUMP_VOLUME=$MONGODB_CONTAINER_DUMP_VOLUME
     networks:
       - mongodb
-      - backend
+      - lb-network
     ports:
-      - $WEBAPP_HOST_PORT:$WEBAPP_CONTAINER_PORT
+      - $LB_HOST_PORT:$LB_CONTAINER_PORT
     env_file:
       - .env
     links:
@@ -41,10 +41,10 @@ services:
     links:
       - mongodb
 
-  webapp-cli:
-    image: $WEBAPP_IMAGE_NAME
+  lb-cli:
+    image: $LB_IMAGE_NAME
     networks:
-      - backend
+      - lb-network
     command: sh
     links:
       - mongodb
@@ -60,5 +60,5 @@ services:
 networks:
   mongodb:
     driver: bridge
-  backend:
+  lb-network:
     driver: bridge
