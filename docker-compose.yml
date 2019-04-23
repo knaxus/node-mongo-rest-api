@@ -1,0 +1,64 @@
+version: '3'
+services:
+  webapp:
+    image: $WEBAPP_IMAGE_NAME
+    build:
+      context: .
+      args:
+        - WEBAPP_IMAGE_NAME=$WEBAPP_IMAGE_NAME
+        - WEBAPP_HOST_PORT=$WEBAPP_HOST_PORT
+        - WEBAPP_CONTAINER_PORT=WEBAPP_CONTAINER_PORT
+        - MONGODB_IMAGE_NAME=$MONGODB_IMAGE_NAME
+        - MONGODB_HOST_DATA_VOLUME=$MONGODB_HOST_DATA_VOLUME
+        - MONGODB_CONTAINER_DATA_VOLUME=$MONGODB_CONTAINER_DATA_VOLUME
+        - MONGODB_HOST_DUMP_VOLUME=$MONGODB_HOST_DUMP_VOLUME
+        - MONGODB_CONTAINER_DUMP_VOLUME=$MONGODB_CONTAINER_DUMP_VOLUME
+    networks:
+      - mongodb
+      - backend
+    ports:
+      - $WEBAPP_HOST_PORT:$WEBAPP_CONTAINER_PORT
+    env_file:
+      - .env
+    links:
+      - mongodb
+
+  mongodb:
+    image: $MONGODB_IMAGE_NAME
+    command: --smallfiles
+    restart: always
+    networks:
+      - mongodb
+    volumes:
+      - $MONGODB_HOST_DATA_VOLUME:$MONGODB_CONTAINER_DATA_VOLUME
+      - $MONGODB_HOST_DUMP_VOLUME:$MONGODB_CONTAINER_DUMP_VOLUME
+
+  mongo-cli:
+    image: mongo
+    networks:
+      - mongodb
+    command: mongo mongodb:27017
+    links:
+      - mongodb
+
+  webapp-cli:
+    image: $WEBAPP_IMAGE_NAME
+    networks:
+      - backend
+    command: sh
+    links:
+      - mongodb
+
+  mongo-dumps:
+    image: mongo
+    networks:
+      - mongodb
+    command: sh
+    links:
+      - mongodb
+
+networks:
+  mongodb:
+    driver: bridge
+  backend:
+    driver: bridge
