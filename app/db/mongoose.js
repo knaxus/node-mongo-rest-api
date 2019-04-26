@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
-const { dev , test } = require('../config/config');
+const { dev, test } = require('../config/config');
 
 const { db } = dev || test;
-
 
 const options = {
   reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect

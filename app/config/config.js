@@ -1,7 +1,6 @@
 const {
   DEVELOPMENT_PORT, MONGODB_URI, MONGODB_URI_TEST, TEST_PORT, NODE_ENV,
 } = process.env;
-// config.js
 const env = NODE_ENV; // 'dev' or 'test'
 const config = {};
 if (env === 'dev') {
@@ -24,5 +23,4 @@ if (env === 'dev') {
   };
 }
 
-// module.exports = config;
 module.exports = config;
