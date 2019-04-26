@@ -1,12 +1,14 @@
-require('./app/config/config.js');
+require('dotenv').config();
 require('./app/db/mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const log4js = require('log4js');
 
-const port = process.env.PORT;
+const { dev } = require('./app/config/config');
 
+const { app } = dev;
+const { port } = app;
 const routes = require('./app/routes');
 
 const { isValidObjectId } = require('./app/helpers/validators');
@@ -14,19 +16,19 @@ const { isValidObjectId } = require('./app/helpers/validators');
 const logger = log4js.getLogger();
 logger.level = 'debug';
 
-const app = express();
+const server = express();
 
 // middleware
-app.use(bodyParser.json());
-app.use(expressValidator({
+server.use(bodyParser.json());
+server.use(expressValidator({
   customValidators: {
     isValidObjectId,
   },
 }));
-app.use('/api', routes);
+server.use('/api', routes);
 
 if (!module.parent) {
-  app.listen(port, () => {
+  server.listen(port, () => {
     logger.debug('app is running on port', port);
   });
 }
