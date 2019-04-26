@@ -5,9 +5,9 @@ const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const log4js = require('log4js');
 
-const { dev } = require('./app/config/config');
+const { dev, test } = require('./app/config/config');
 
-const { app } = dev;
+const { app } = dev || test;
 const { port } = app;
 const routes = require('./app/routes');
 

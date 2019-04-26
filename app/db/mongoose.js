@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const { dev } = require('../config/config');
+const { dev , test } = require('../config/config');
 
-const { db } = dev;
+const { db } = dev || test;
 
 
 const options = {
