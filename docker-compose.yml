@@ -1,0 +1,64 @@
+version: '3'
+services:
+  lb-api:
+    image: $LB_IMAGE_NAME
+    build:
+      context: .
+      args:
+        - LB_IMAGE_NAME=$LB_IMAGE_NAME
+        - LB_HOST_PORT=$LB_HOST_PORT
+        - LB_CONTAINER_PORT=LB_CONTAINER_PORT
+        - MONGODB_IMAGE_NAME=$MONGODB_IMAGE_NAME
+        - MONGODB_HOST_DATA_VOLUME=$MONGODB_HOST_DATA_VOLUME
+        - MONGODB_CONTAINER_DATA_VOLUME=$MONGODB_CONTAINER_DATA_VOLUME
+        - MONGODB_HOST_DUMP_VOLUME=$MONGODB_HOST_DUMP_VOLUME
+        - MONGODB_CONTAINER_DUMP_VOLUME=$MONGODB_CONTAINER_DUMP_VOLUME
+    networks:
+      - mongodb
+      - lb-network
+    ports:
+      - $LB_HOST_PORT:$LB_CONTAINER_PORT
+    env_file:
+      - .env
+    links:
+      - mongodb
+
+  mongodb:
+    image: $MONGODB_IMAGE_NAME
+    command: --smallfiles
+    restart: always
+    networks:
+      - mongodb
+    volumes:
+      - $MONGODB_HOST_DATA_VOLUME:$MONGODB_CONTAINER_DATA_VOLUME
+      - $MONGODB_HOST_DUMP_VOLUME:$MONGODB_CONTAINER_DUMP_VOLUME
+
+  mongo-cli:
+    image: mongo
+    networks:
+      - mongodb
+    command: mongo mongodb:27017
+    links:
+      - mongodb
+
+  lb-cli:
+    image: $LB_IMAGE_NAME
+    networks:
+      - lb-network
+    command: sh
+    links:
+      - mongodb
+
+  mongo-dumps:
+    image: mongo
+    networks:
+      - mongodb
+    command: sh
+    links:
+      - mongodb
+
+networks:
+  mongodb:
+    driver: bridge
+  lb-network:
+    driver: bridge

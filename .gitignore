@@ -2,3 +2,5 @@ node_modules
 coverage/
 yarn-error.log
 .env
+.idea
+.vs
