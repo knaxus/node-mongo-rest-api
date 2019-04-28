@@ -9,7 +9,7 @@ if (env === 'dev') {
       port: DEVELOPMENT_PORT || 5000,
     },
     db: {
-      url: MONGODB_URI,
+      url: MONGODB_URI || 'mongodb://localhost/LinkBin',
     },
   };
 } else {
@@ -18,7 +18,7 @@ if (env === 'dev') {
       port: TEST_PORT,
     },
     db: {
-      url: MONGODB_URI_TEST,
+      url: MONGODB_URI_TEST || 'mongodb://localhost/LinkBinTest',
     },
   };
 }
