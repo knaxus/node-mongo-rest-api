@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const { dev, test } = require('../config/config');
+
+const { db } = dev || test;
 
 const options = {
   reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
@@ -7,4 +10,4 @@ const options = {
 };
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI, options);
+mongoose.connect(db.url, options);
